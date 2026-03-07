@@ -1,0 +1,130 @@
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500&family=Nunito+Sans:ital,opsz,wght@0,6..12,200..1000;1,6..12,200..1000&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 330 30% 98%;
+    --foreground: 330 15% 12%;
+
+    --card: 0 0% 100%;
+    --card-foreground: 330 15% 12%;
+
+    --popover: 0 0% 100%;
+    --popover-foreground: 330 15% 12%;
+
+    --primary: 335 60% 58%;
+    --primary-foreground: 0 0% 100%;
+
+    --secondary: 330 35% 96%;
+    --secondary-foreground: 330 15% 15%;
+
+    --muted: 330 20% 94%;
+    --muted-foreground: 330 8% 45%;
+
+    --accent: 335 55% 50%;
+    --accent-foreground: 0 0% 100%;
+
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 210 40% 98%;
+
+    --border: 330 20% 90%;
+    --input: 330 20% 90%;
+    --ring: 335 60% 58%;
+
+    --radius: 0.75rem;
+
+    --rose: 335 60% 58%;
+    --rose-light: 335 55% 75%;
+    --rose-soft: 335 40% 90%;
+    --rose-dark: 335 55% 42%;
+    --blush: 330 30% 95%;
+    --nude: 20 25% 90%;
+    --nude-dark: 20 12% 65%;
+    --glamour-pink: 335 60% 58%;
+    --glamour-dark: 330 25% 10%;
+
+    --font-display: 'Cormorant Garamond', serif;
+    --font-body: 'Nunito Sans', sans-serif;
+
+    --sidebar-background: 0 0% 98%;
+    --sidebar-foreground: 240 5.3% 26.1%;
+    --sidebar-primary: 335 60% 58%;
+    --sidebar-primary-foreground: 0 0% 98%;
+    --sidebar-accent: 330 35% 96%;
+    --sidebar-accent-foreground: 330 15% 15%;
+    --sidebar-border: 330 20% 91%;
+    --sidebar-ring: 335 60% 58%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground font-body antialiased;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    font-family: var(--font-display);
+  }
+}
+
+@layer utilities {
+  .text-gradient-gold {
+    background: linear-gradient(135deg, hsl(335, 60%, 58%), hsl(335, 55%, 75%), hsl(340, 50%, 60%));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .bg-gradient-gold {
+    background: linear-gradient(135deg, hsl(335, 60%, 58%), hsl(335, 55%, 75%));
+  }
+
+  .bg-gradient-dark {
+    background: linear-gradient(145deg, hsl(330, 25%, 10%), hsl(330, 20%, 18%));
+  }
+
+  .bg-gradient-soft {
+    background: linear-gradient(135deg, hsl(335, 40%, 90%), hsl(330, 30%, 95%));
+  }
+
+  .shadow-gold {
+    box-shadow: 0 8px 30px -6px hsl(335 60% 58% / 0.3);
+  }
+
+  .shadow-soft {
+    box-shadow: 0 4px 24px -4px hsl(330 20% 50% / 0.1);
+  }
+
+  .glass {
+    background: hsl(0 0% 100% / 0.7);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+  }
+
+  .animate-float {
+    animation: float 3s ease-in-out infinite;
+  }
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-8px); }
+}
+
+@keyframes shimmer {
+  0% { background-position: -200% 0; }
+  100% { background-position: 200% 0; }
+}
+
+.shimmer {
+  background: linear-gradient(90deg, transparent 0%, hsl(335, 55%, 75%, 0.2) 50%, transparent 100%);
+  background-size: 200% 100%;
+  animation: shimmer 3s ease-in-out infinite;
+}
