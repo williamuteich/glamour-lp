@@ -33,9 +33,9 @@ const HeroSection = () => {
               <span className="font-body font-bold text-xs tracking-[0.2em] uppercase">Promoção especial</span>
             </div>
             <p className="text-white font-display text-xl font-medium drop-shadow-sm">
-              Perfuração de orelha com piercing incluso
+              Perfuração de orelha com <span className="text-amber-400 font-bold">JÓIA INCLUSA</span>
             </p>
-            <p className="text-amber-400 text-4xl font-display font-bold mt-2 drop-shadow-sm">R$ 49,90</p>
+            <p className="text-amber-400 text-4xl font-display font-bold mt-2 drop-shadow-sm">R$ 59,90</p>
             <p className="text-white/80 text-sm mt-3 font-light">Procedimento rápido, seguro e feito na loja.</p>
             <a
               href="https://wa.me/555189703450?text=Olá! Gostaria de agendar minha perfuração de orelha."

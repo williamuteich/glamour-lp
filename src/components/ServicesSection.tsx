@@ -25,9 +25,9 @@ const ServicesSection = () => {
               </div>
               <p className="text-rose-light font-body text-xs tracking-[0.35em] uppercase font-light">Perfuração de Orelha</p>
               <p className="text-primary-foreground font-display text-3xl md:text-4xl font-light">
-                Com piercing incluso
+                Com <span className="text-primary font-semibold">JÓIA INCLUSA</span>
               </p>
-              <p className="text-primary font-display text-5xl md:text-6xl font-semibold">R$ 49,90</p>
+              <p className="text-primary font-display text-5xl md:text-6xl font-semibold">R$ 59,90</p>
               <p className="text-primary-foreground/50 max-w-md mx-auto font-light text-sm">
                 Procedimento rápido, seguro e realizado com materiais adequados.
               </p>
