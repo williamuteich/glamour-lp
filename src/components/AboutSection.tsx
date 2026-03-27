@@ -15,13 +15,13 @@ const AboutSection = () => {
               Conheça a <span className="text-gradient-gold italic">Glamour Lindóia</span>
             </h2>
             <p className="text-muted-foreground leading-relaxed font-light">
-              A Glamour Lindóia é uma loja especializada em acessórios, semijoias e moda que combina estilo, qualidade e preços acessíveis.
+              Somos especializados em perfuração de orelha com jóia inclusa. Nosso procedimento é rápido, seguro e realizado com materiais de alta qualidade.
             </p>
             <p className="text-muted-foreground leading-relaxed font-light">
-              Localizada no Shopping Lindóia em Porto Alegre, a loja oferece uma grande variedade de produtos para quem quer se destacar com elegância.
+              Localizada no Shopping Lindóia em Porto Alegre, estamos prontos para te atender sem agendamento prévio. Venha transformar seu estilo!
             </p>
             <p className="text-foreground font-display text-xl italic font-light">
-              "Peças modernas, clássicas e versáteis para todas as ocasiões."
+              "Perfure com confiança e saia linda da loja."
             </p>
           </div>
           <div className="grid grid-cols-2 gap-5">

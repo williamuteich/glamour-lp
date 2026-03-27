@@ -24,7 +24,7 @@ const Header = () => {
         </a>
 
         <nav className="hidden md:flex items-center gap-8">
-          {["Início", "Produtos", "Serviços", "Sobre", "Localização"].map((item) => (
+          {["Início", "Serviços", "Sobre", "Localização"].map((item) => (
             <a
               key={item}
               href={`#${item.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "")}`}
@@ -47,7 +47,7 @@ const Header = () => {
 
       {menuOpen && (
         <nav className="md:hidden glass border-b border-border px-4 py-5 space-y-4">
-          {["Início", "Produtos", "Serviços", "Sobre", "Localização"].map((item) => (
+          {["Início", "Serviços", "Sobre", "Localização"].map((item) => (
             <a
               key={item}
               href={`#${item.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "")}`}

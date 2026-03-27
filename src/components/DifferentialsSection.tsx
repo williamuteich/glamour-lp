@@ -1,11 +1,11 @@
-import { Package, BadgeDollarSign, Heart, MapPin, Gem } from "lucide-react";
+import { ShieldCheck, Gem, Clock, Smile, Sparkles } from "lucide-react";
 
 const items = [
-  { icon: Package, title: "Grande variedade", desc: "Milhares de opções para todos os gostos." },
-  { icon: BadgeDollarSign, title: "Preços acessíveis", desc: "Qualidade premium sem pesar no bolso." },
-  { icon: Heart, title: "Atendimento especial", desc: "Equipe dedicada a te ajudar na escolha." },
-  { icon: MapPin, title: "Fácil acesso", desc: "Térreo do Shopping Lindóia, sala 160." },
-  { icon: Gem, title: "Alta qualidade", desc: "Peças modernas com acabamento impecável." },
+  { icon: ShieldCheck, title: "Segurança garantida", desc: "Material esterilizado e técnica profissional em todos os procedimentos." },
+  { icon: Gem, title: "Jóia inclusa", desc: "Brinco de qualidade já incluído no valor – sem custo adicional." },
+  { icon: Clock, title: "Rápido e sem dor", desc: "Procedimento ágil feito na hora, sem precisar agendar com antecedência." },
+  { icon: Smile, title: "Atendimento especial", desc: "Equipe atenciosa e acolhedora para deixar você à vontade." },
+  { icon: Sparkles, title: "No shopping", desc: "Térreo do Shopping Lindóia, sala 160 – fácil acesso e estacionamento." },
 ];
 
 const DifferentialsSection = () => {

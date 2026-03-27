@@ -19,7 +19,7 @@ const LocationSection = () => {
         <div className="grid md:grid-cols-2 gap-10 max-w-5xl mx-auto">
           <div className="rounded-2xl overflow-hidden shadow-soft h-80">
             <iframe
-              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3454.943472423332!2d-51.15449422366908!3d-30.00977947494107!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x9519776987fdd719%3A0xbe780735ac46e089!2sGlamour%20Lind%C3%B3ia!5e0!3m2!1spt-BR!2sbr!4v1772905966350!5m2!1spt-BR!2sbr"
+              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3454.943634208898!2d-51.15449422355863!3d-30.009774829671265!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x9519776987fdd719%3A0xbe780735ac46e089!2sGlamour%20Lind%C3%B3ia!5e0!3m2!1spt-BR!2sbr!4v1774618697838!5m2!1spt-BR!2sbr"
               width="100%"
               height="100%"
               style={{ border: 0 }}
@@ -48,7 +48,7 @@ const LocationSection = () => {
             ))}
 
             <a
-              href="https://www.google.com/maps/place/Shopping+Lind%C3%B3ia"
+              href="https://www.google.com/maps/place/Glamour+Lindóia/@-30.0098074,-51.1542739,17z/data=!4m6!3m5!1s0x9519776987fdd719:0xbe780735ac46e089!8m2!3d-30.0097795!4d-51.1519193!16s%2Fg%2F11q1lk5yny?entry=ttu&g_ep=EgoyMDI2MDMyNC4wIKXMDSoASAFQAw%3D%3D"
               target="_blank"
               rel="noopener noreferrer"
               className="group inline-flex items-center gap-2 bg-primary text-primary-foreground font-medium px-8 py-3.5 rounded-full text-sm tracking-wide hover:shadow-gold transition-all w-fit"

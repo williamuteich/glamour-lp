@@ -18,12 +18,12 @@ const HeroSection = () => {
               <p className="text-rose-light font-body text-xs tracking-[0.35em] uppercase font-light">Shopping Lindóia • Porto Alegre</p>
             </div>
             <h1 className="font-display text-5xl sm:text-6xl lg:text-7xl font-light leading-[1.1] text-primary-foreground">
-              Beleza, estilo e{" "}
-              <span className="text-gradient-gold italic font-medium">glamour</span>
-              <br />em um só lugar
+              Fure a orelha com{" "}
+              <span className="text-gradient-gold italic font-medium">jóia inclusa</span>
+              <br />por só R$ 59,90
             </h1>
             <p className="text-base text-primary-foreground/60 font-light leading-relaxed max-w-md">
-              A Glamour Lindóia oferece acessórios, maquiagens, semijoias e muito mais no Shopping Lindóia.
+              Procedimento rápido e seguro realizado na Glamour Lindóia, Shopping Lindóia em Porto Alegre.
             </p>
           </div>
 
@@ -37,24 +37,25 @@ const HeroSection = () => {
             </p>
             <p className="text-amber-400 text-4xl font-display font-bold mt-2 drop-shadow-sm">R$ 59,90</p>
             <p className="text-white/80 text-sm mt-3 font-light">Procedimento rápido, seguro e feito na loja.</p>
+          </div>
+
+          <div className="flex flex-wrap gap-4 animate-fade-in-up" style={{ animationDelay: "0.4s" }}>
             <a
               href="https://wa.me/555189703450?text=Olá! Gostaria de agendar minha perfuração de orelha."
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center gap-2 mt-4 bg-amber-500 hover:bg-amber-400 text-glamour-dark font-semibold px-5 py-2.5 rounded-full text-sm transition-all hover:shadow-lg"
+              className="group bg-primary text-primary-foreground font-medium px-8 py-3.5 rounded-full text-sm tracking-wide hover:shadow-gold transition-all flex items-center gap-2"
             >
-              Agendar agora
-              <ArrowRight className="h-4 w-4" />
-            </a>
-          </div>
-
-          <div className="flex flex-wrap gap-4 animate-fade-in-up" style={{ animationDelay: "0.4s" }}>
-            <a href="#localizacao" className="group bg-primary text-primary-foreground font-medium px-8 py-3.5 rounded-full text-sm tracking-wide hover:shadow-gold transition-all flex items-center gap-2">
-              Visitar a loja
+              Agendar minha perfuração
               <ArrowRight className="h-4 w-4 group-hover:translate-x-1 transition-transform" />
             </a>
-            <a href="#produtos" className="border border-primary-foreground/20 text-primary-foreground px-8 py-3.5 rounded-full text-sm tracking-wide hover:bg-primary-foreground/10 transition font-light">
-              Ver produtos
+            <a
+              href="https://www.google.com/maps/place/Glamour+Lindóia/@-30.0098074,-51.1542739,17z/data=!4m6!3m5!1s0x9519776987fdd719:0xbe780735ac46e089!8m2!3d-30.0097795!4d-51.1519193!16s%2Fg%2F11q1lk5yny?entry=ttu&g_ep=EgoyMDI2MDMyNC4wIKXMDSoASAFQAw%3D%3D"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="border border-primary-foreground/20 text-primary-foreground px-8 py-3.5 rounded-full text-sm tracking-wide hover:bg-primary-foreground/10 transition font-light"
+            >
+              Como chegar
             </a>
           </div>
         </div>
