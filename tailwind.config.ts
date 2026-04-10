@@ -66,7 +66,6 @@ export default {
           pink: "hsl(var(--glamour-pink))",
           dark: "hsl(var(--glamour-dark))",
         },
-        // Keep gold as alias for backward compat
         gold: {
           DEFAULT: "hsl(var(--rose))",
           light: "hsl(var(--rose-light))",
@@ -105,12 +104,22 @@ export default {
           "0%": { opacity: "0" },
           "100%": { opacity: "1" },
         },
+        "marquee-vertical": {
+          "0%": { transform: "translateY(0)" },
+          "100%": { transform: "translateY(-50%)" },
+        },
+        "marquee-horizontal": {
+          "0%": { transform: "translateX(0)" },
+          "100%": { transform: "translateX(-50%)" },
+        },
       },
       animation: {
         "accordion-down": "accordion-down 0.2s ease-out",
         "accordion-up": "accordion-up 0.2s ease-out",
         "fade-in-up": "fade-in-up 0.6s ease-out forwards",
         "fade-in": "fade-in 0.5s ease-out forwards",
+        "marquee-vertical": "marquee-vertical 25s linear infinite",
+        "marquee-horizontal": "marquee-horizontal 35s linear infinite",
       },
     },
   },
