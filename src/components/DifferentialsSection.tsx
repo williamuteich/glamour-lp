@@ -2,7 +2,6 @@ const items = [
   { title: "Procedimento rápido (menos de 1 minuto)" },
   { title: "Escala de cuidados e técnica adequada" },
   { title: "Atendimento cuidadoso para crianças" },
-  { title: "Garantia de 30 dias para joias (defeitos)" },
 ];
 
 const DifferentialsSection = () => {

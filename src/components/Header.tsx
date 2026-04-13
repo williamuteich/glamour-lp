@@ -16,10 +16,10 @@ const Header = () => {
     <header className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${scrolled ? "glass border-b border-border shadow-soft" : "bg-transparent py-2"}`}>
       <div className="container mx-auto px-4 flex items-center justify-between h-16 md:h-20">
         <a href="#" className="flex items-center gap-3">
-          <img src={logo} alt="Glamour Lindóia" className="h-11 w-11 rounded-full object-cover ring-2 ring-primary/20" />
-          <div className="hidden sm:block">
-            <span className="font-display text-xl font-semibold text-foreground">Glamour</span>
-            <span className="block text-[10px] tracking-[0.25em] uppercase text-muted-foreground">Lindóia</span>
+          <img src={logo} alt="Glamour Lindóia" className="h-12 w-12 rounded-full object-cover ring-2 ring-primary/20" />
+          <div className="flex flex-col">
+            <span className="font-display text-lg sm:text-xl font-semibold text-foreground leading-tight">Glamour</span>
+            <span className="block text-[8px] sm:text-[10px] tracking-[0.25em] uppercase text-muted-foreground leading-tight">Lindóia</span>
           </div>
         </a>
 
