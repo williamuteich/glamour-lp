@@ -17,7 +17,6 @@ const ServicesSection = () => {
 
         <div className="max-w-5xl mx-auto">
           <div className="bg-card shadow-soft rounded-3xl overflow-hidden border border-border grid lg:grid-cols-2 items-center">
-            {/* Imagem Antes e Depois */}
             <div className="relative h-full min-h-[300px] md:min-h-[400px]">
               <img
                 src={beforeAfterImage}
@@ -30,7 +29,6 @@ const ServicesSection = () => {
               </div>
             </div>
 
-            {/* Detalhes da Oferta */}
             <div className="p-8 md:p-12 text-center lg:text-left flex flex-col justify-center">
               <div className="space-y-5">
                 <p className="text-primary font-body text-xs tracking-[0.35em] uppercase font-light">Por apenas</p>
