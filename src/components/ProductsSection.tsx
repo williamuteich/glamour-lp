@@ -1,58 +1,60 @@
-import earrings from "@/assets/earrings-gold.jpeg";
-import heartSet from "@/assets/heart-set.jpeg";
-import silverRings from "@/assets/silver-rings.jpg";
-import handbags from "@/assets/handbags.jpg";
-import makeup from "@/assets/makeup-display.jpg";
-import accessories from "@/assets/accessories.jpg";
 import { ArrowRight, MessageCircle } from "lucide-react";
 
-const WHATSAPP_NUMBER = "555189703450"; 
-
-const categories = [
-  {
-    image: earrings,
-    title: "Semijoias Folhadas a Ouro",
-    desc: "Brincos, colares e pulseiras com acabamento premium.",
-    message: "Olá! Tenho interesse nas semijoias folhadas a ouro. Poderia me enviar o catálogo?",
-  },
-  {
-    image: heartSet,
-    title: "Peças em Prata",
-    desc: "Conjuntos delicados e sofisticados em prata 925.",
-    message: "Olá! Gostaria de conhecer as peças em prata 925. Vocês têm opções disponíveis?",
-  },
-  {
-    image: silverRings,
-    title: "Anéis de Prata Masculinos",
-    desc: "Design moderno para o público masculino.",
-    message: "Olá! Tenho interesse nos anéis de prata masculinos. Quais modelos vocês têm?",
-  },
-  {
-    image: handbags,
-    title: "Bolsas Femininas",
-    desc: "Bolsas elegantes para todas as ocasiões.",
-    message: "Olá! Gostaria de ver as opções de bolsas femininas. Poderia me ajudar?",
-  },
-  {
-    image: makeup,
-    title: "Maquiagens",
-    desc: "Produtos de beleza das melhores marcas.",
-    message: "Olá! Tenho interesse nos produtos de maquiagem. Vocês trabalham com quais marcas?",
-  },
-  {
-    image: accessories,
-    title: "Acessórios Femininos",
-    desc: "Tiaras, presilhas, scrunchies e muito mais.",
-    message: "Olá! Gostaria de conhecer os acessórios femininos. Vocês têm tiaras e presilhas?",
-  },
-];
+const WHATSAPP_NUMBER = "555189703450";
 
 const ProductsSection = () => {
+  const earrings = "/assets/earrings-gold.jpeg";
+  const heartSet = "/assets/heart-set.jpeg";
+  const silverRings = "/assets/silver-rings.jpg";
+  const handbags = "/assets/handbags.jpg";
+  const makeup = "/assets/makeup-display.jpg";
+  const accessories = "/assets/accessories.jpg";
+
+  const categories = [
+    {
+      image: earrings,
+      title: "Semijoias Folhadas a Ouro",
+      desc: "Brincos, colares e pulseiras com acabamento premium.",
+      message: "Olá! Tenho interesse nas semijoias folhadas a ouro. Poderia me enviar o catálogo?",
+    },
+    {
+      image: heartSet,
+      title: "Peças em Prata",
+      desc: "Conjuntos delicados e sofisticados em prata 925.",
+      message: "Olá! Gostaria de conhecer as peças em prata 925. Vocês têm opções disponíveis?",
+    },
+    {
+      image: silverRings,
+      title: "Anéis de Prata Masculinos",
+      desc: "Design moderno para o público masculino.",
+      message: "Olá! Tenho interesse nos anéis de prata masculinos. Quais modelos vocês têm?",
+    },
+    {
+      image: handbags,
+      title: "Bolsas Femininas",
+      desc: "Bolsas elegantes para todas as ocasiões.",
+      message: "Olá! Gostaria de ver as opções de bolsas femininas. Poderia me ajudar?",
+    },
+    {
+      image: makeup,
+      title: "Maquiagens",
+      desc: "Produtos de beleza das melhores marcas.",
+      message: "Olá! Tenho interesse nos produtos de maquiagem. Vocês trabalham com quais marcas?",
+    },
+    {
+      image: accessories,
+      title: "Acessórios Femininos",
+      desc: "Tiaras, presilhas, scrunchies e muito mais.",
+      message: "Olá! Gostaria de conhecer os acessórios femininos. Vocês têm tiaras e presilhas?",
+    },
+  ];
+
   const handleCategoryClick = (message: string) => {
     const encodedMessage = encodeURIComponent(message);
     const whatsappUrl = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodedMessage}`;
     window.open(whatsappUrl, "_blank");
   };
+
   return (
     <section id="produtos" className="py-24 bg-secondary">
       <div className="container mx-auto px-4">

@@ -39,8 +39,8 @@ const LocationSection = () => {
 
             <div>
               <p className="font-body text-xs tracking-[0.2em] uppercase font-light text-primary mb-1">Horário de Funcionamento</p>
-              <p className="text-muted-foreground text-base font-light">Seg a Sáb: 10h às 22h</p>
-              <p className="text-muted-foreground text-base font-light">Dom: 14h às 20h</p>
+              <p className="text-muted-foreground text-base font-light">Seg a Sáb: 10h às 21h</p>
+              <p className="text-muted-foreground text-base font-light">Dom: Fechado</p>
             </div>
 
             <div className="pt-4">

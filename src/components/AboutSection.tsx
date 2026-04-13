@@ -1,6 +1,3 @@
-import storeInside from "@/assets/store-inside.jpg";
-import storeFront from "@/assets/store-front.jpg";
-
 const features = [
   "Atendimento na hora — sem precisar agendar",
   "Local seguro dentro do shopping",
@@ -10,6 +7,9 @@ const features = [
 ];
 
 const AboutSection = () => {
+  const storeInside = "/assets/store-inside.jpg";
+  const storeFront = "/assets/store-front.jpg";
+
   return (
     <section id="sobre" className="py-24 bg-secondary">
       <div className="container mx-auto px-4">

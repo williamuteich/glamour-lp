@@ -1,6 +1,5 @@
-import heroImg from "@/assets/hero-jewelry.jpg";
-
 const HeroSection = () => {
+  const heroImg = "/assets/hero-jewelry.jpg";
   return (
     <section id="inicio" className="relative min-h-[85vh] lg:min-h-[90vh] flex items-center overflow-hidden bg-background pt-24 pb-12 lg:pb-16">
       <div className="absolute top-0 right-0 w-[600px] h-[600px] bg-rose-soft/40 rounded-full blur-3xl -translate-y-1/2 translate-x-1/3" />
@@ -27,7 +26,7 @@ const HeroSection = () => {
               </div>
               <h1 className="font-display text-5xl sm:text-6xl md:text-7xl font-light leading-[1.1] text-foreground">
                 Perfuração de orelha + <br />
-                <span className="text-gradient-gold italic font-medium">brinco incluso</span> <br />
+                <span className="text-gradient-gold italic font-medium">par de brincos inclusos</span> <br />
                 por apenas R$59,90
               </h1>
               <p className="text-base md:text-lg text-muted-foreground font-light leading-relaxed max-w-md">

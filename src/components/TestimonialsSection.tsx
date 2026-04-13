@@ -1,4 +1,11 @@
+import { useState, useEffect } from "react";
 import { Star } from "lucide-react";
+import {
+  Carousel,
+  CarouselContent,
+  CarouselItem,
+  type CarouselApi,
+} from "@/components/ui/carousel";
 
 const GoogleIcon = () => (
   <svg viewBox="0 0 24 24" className="w-5 h-5 shrink-0">
@@ -11,24 +18,94 @@ const GoogleIcon = () => (
 
 const testimonials = [
   {
-    name: "Nome do Cliente",
-    time: "2 dias atrás",
-    initial: "N",
-    text: "Fui super bem atendida, rápido e sem dor! O estúdio é impecável e as joias são lindas.",
+    name: "Vanessa Martins",
+    time: "Comentário do Google",
+    initial: "V",
+    image: null,
+    text: "Loja simplesmente maravilhosa! O atendimento é impecável, super atencioso e acolhedor. A qualidade das semi joias e acessórios é excelente, peças lindas, modernas e com ótimo acabamento. Dá pra ver o cuidado e o carinho em cada detalhe. Com certeza virei cliente fiel. Recomendo muito!",
     rating: 5,
   },
   {
-    name: "Nome do Cliente",
-    time: "1 semana atrás",
-    initial: "N",
-    text: "Levei minha filha para o primeiro furo e foi muito tranquilo, profissional super atenciosa, recomendo!",
+    name: "Pamela Uteich Rodrigues",
+    time: "Comentário do Google",
+    initial: "P",
+    image: "/assets/PamelaUteichRodrigues.png",
+    text: "Experiência maravilhosa! A loja é organizada, tem uma grande variedade de bijuterias e maquiagens lindas e de ótima qualidade. O atendimento foi impecável, com certeza voltarei mais vezes.",
     rating: 5,
-  }
+  },
+  {
+    name: "Rayssa Paim",
+    time: "Comentário do Google",
+    initial: "R",
+    image: null,
+    text: "Que experiência maravilhosa! Nessa loja encontrei literalmente tudo que precisava, fiquei encantada com atendimento e as peças, indico!",
+    rating: 5,
+  },
+  {
+    name: "Lisiane Almada Cauduro e Kolas",
+    time: "Comentário do Google",
+    initial: "L",
+    image: "/assets/LisianeAlmadaCauduroeKolas.png",
+    text: "Atendimento maravilhoso e produtos de excelente qualidade. Amei a experiência!",
+    rating: 5,
+  },
+  {
+    name: "Maribel Zanotto",
+    time: "Comentário do Google",
+    initial: "M",
+    image: "/assets/MaribelZanotto.png",
+    text: "Loja maravilhosa! Atendimento impecável, ambiente agradável e tudo muito bem organizado. Sempre fui muito bem recebida 🥰",
+    rating: 5,
+  },
+  {
+    name: "Karen Leticia Brunisaki",
+    time: "Comentário do Google",
+    initial: "K",
+    image: "/assets/KarenLeticiaBrunisaki.png",
+    text: "A loja possui muitas opções atrativas e o atendimento é excelente!",
+    rating: 5,
+  },
+  {
+    name: "Cristina Pereira",
+    time: "Comentário do Google",
+    initial: "C",
+    image: "/assets/CristinaPereira.png",
+    text: "Sou cliente há anos da Glamour Lindóia, pois lá sempre sou recebida com muito carinho e encontro semi jóias lindas, por um ótimo preço!",
+    rating: 5,
+  },
+  {
+    name: "Fran Fernanndes",
+    time: "Comentário do Google",
+    initial: "F",
+    image: "/assets/FranFernanndes.png",
+    text: "Que loja maravilhosa, com muita variedade e preços ótimos . Parabéns ❤️🌹",
+    rating: 5,
+  },
+  {
+    name: "Denise Alcione Dorscheid",
+    time: "Comentário do Google",
+    initial: "D",
+    image: null,
+    text: "Local limpo e organizado. Com muitas variedades. Atendimento atencioso. Preços bons.",
+    rating: 5,
+  },
 ];
 
 const TestimonialsSection = () => {
+  const [api, setApi] = useState<CarouselApi>();
+
+  useEffect(() => {
+    if (!api) return;
+
+    const intervalId = setInterval(() => {
+      api.scrollNext();
+    }, 3500);
+
+    return () => clearInterval(intervalId);
+  }, [api]);
+
   return (
-    <section className="py-24 bg-background border-t border-border/50">
+    <section id="avaliacoes" className="py-24 bg-background border-t border-border/50 overflow-hidden">
       <div className="container mx-auto px-4">
         <div className="text-center mb-16 space-y-4">
           <div className="flex items-center justify-center gap-3">
@@ -40,48 +117,65 @@ const TestimonialsSection = () => {
             Quem já fez, <span className="text-gradient-gold italic">recomenda</span>
           </h2>
           <p className="text-muted-foreground font-light max-w-md mx-auto pt-2">
-            Veja o que dizem as pessoas que já passaram pela nossa perfuração no Shopping Lindóia.
+            Veja o que dizem as pessoas que já passaram pela Glamour no Shopping Lindóia.
           </p>
         </div>
 
-        <div className="grid md:grid-cols-2 gap-8 max-w-4xl mx-auto">
-          {testimonials.map((t, idx) => (
-            <div key={idx} className="bg-card p-6 sm:p-8 rounded-2xl border border-border shadow-soft flex flex-col hover:border-primary/20 transition-colors">
-              <div className="flex justify-between items-start mb-5">
-                <div className="flex items-center gap-3">
-                  <div className="w-12 h-12 rounded-full bg-primary/10 flex items-center justify-center text-primary font-bold text-xl uppercase">
-                    {t.initial}
-                  </div>
-                  <div>
-                    <h4 className="font-display font-medium text-foreground text-lg leading-none mb-1">{t.name}</h4>
-                    <p className="text-muted-foreground text-xs font-light">{t.time}</p>
-                  </div>
-                </div>
-                <GoogleIcon />
-              </div>
+        <div className="max-w-6xl mx-auto">
+          <Carousel
+            setApi={setApi}
+            opts={{
+              align: "start",
+              loop: true,
+            }}
+            className="w-full"
+          >
+            <CarouselContent className="-ml-4">
+              {testimonials.map((t, idx) => (
+                <CarouselItem key={idx} className="pl-4 md:basis-1/2 lg:basis-1/3">
+                  <div className="h-full bg-card p-6 sm:p-8 rounded-2xl border border-border shadow-soft flex flex-col hover:border-primary/20 transition-colors">
+                    <div className="flex justify-between items-start mb-5">
+                      <div className="flex items-center gap-3">
+                        {t.image ? (
+                          <img src={t.image} alt={t.name} className="w-12 h-12 rounded-full object-cover ring-2 ring-primary/10" />
+                        ) : (
+                          <div className="w-12 h-12 rounded-full bg-primary/10 flex items-center justify-center text-primary font-bold text-xl uppercase ring-2 ring-primary/10">
+                            {t.initial}
+                          </div>
+                        )}
+                        <div>
+                          <h4 className="font-display font-medium text-foreground text-sm sm:text-base leading-tight mb-1">{t.name}</h4>
+                          <p className="text-muted-foreground text-[10px] uppercase tracking-wider font-light">{t.time}</p>
+                        </div>
+                      </div>
+                      <GoogleIcon />
+                    </div>
 
-              <div className="flex gap-1 mb-4">
-                {[...Array(t.rating)].map((_, i) => (
-                  <Star key={i} className="w-5 h-5 fill-amber-400 text-amber-400" />
-                ))}
-              </div>
+                    <div className="flex gap-1 mb-4">
+                      {[...Array(t.rating)].map((_, i) => (
+                        <Star key={i} className="w-4 h-4 fill-amber-400 text-amber-400" />
+                      ))}
+                    </div>
 
-              <p className="font-display text-lg text-foreground/90 italic leading-relaxed">
-                "{t.text}"
-              </p>
-            </div>
-          ))}
+                    <p className="font-display text-base text-foreground/90 italic leading-relaxed flex-grow">
+                      "{t.text}"
+                    </p>
+                  </div>
+                </CarouselItem>
+              ))}
+            </CarouselContent>
+          </Carousel>
         </div>
 
         <div className="mt-12 flex justify-center">
           <a
-            href="https://search.google.com/local/writereview?placeid=ChIJ2Xf9h2l3GZURieBGqlsH6L4" // Altere pelo link verdadeiro de review se tiver do Maps
+            href="https://share.google/hur5dhDMdpIrqezSP"
             target="_blank"
             rel="noopener noreferrer"
             className="inline-flex items-center gap-2 bg-secondary text-foreground hover:bg-secondary/80 px-6 py-3 rounded-full font-medium transition-colors shadow-sm text-sm"
           >
             <GoogleIcon />
-            Avalie-nos no Google
+            Ver mais avaliações no Google
           </a>
         </div>
       </div>

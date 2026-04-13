@@ -20,14 +20,15 @@ const ServicesSection = () => {
               <p className="text-primary font-display text-5xl md:text-6xl font-semibold">R$ 59,90</p>
 
               <div className="flex flex-col items-center gap-3 mt-8 text-foreground/80 font-light text-sm">
-                <span>Valor final (sem surpresas)</span>
-                <span>Escolha do brinco na hora</span>
-                <span>Atendimento imediato no shopping</span>
+                <span>Perfuração somente com pistola</span>
+                <span>Escolha do par de brincos na hora</span>
+                <span className="font-bold text-primary">Perfuração em crianças: R$ 89,90 o par de joias</span>
+                <span>Atendimento imediato no Shopping Lindóia</span>
               </div>
 
               <div className="mt-8 pt-6 border-t border-border inline-block max-w-sm mx-auto">
                 <p className="text-primary font-medium text-lg leading-relaxed">
-                  Você já sai com o brinco incluso — sem pagar nada a mais.
+                  Você já sai com o par de brincos inclusos — sem pagar nada a mais no valor unitário.
                 </p>
               </div>
 

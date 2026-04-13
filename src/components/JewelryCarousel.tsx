@@ -1,4 +1,3 @@
-import heroImg from "@/assets/hero-jewelry.jpg";
 import {
     Carousel,
     CarouselContent,
@@ -19,6 +18,7 @@ const items = [
 ];
 
 const JewelryCarousel = () => {
+    const heroImg = "/assets/hero-jewelry.jpg";
     return (
         <section className="py-20 bg-background border-t border-border/50">
             <div className="container mx-auto px-4 mb-10 text-center">

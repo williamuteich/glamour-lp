@@ -1,8 +1,8 @@
-import logo from "@/assets/logo.jpeg";
-import { Menu, X } from "lucide-react";
+import { Menu, X, Instagram } from "lucide-react";
 import { useState, useEffect } from "react";
 
 const Header = () => {
+  const logo = "/assets/logo.jpeg";
   const [menuOpen, setMenuOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
 
@@ -35,13 +35,34 @@ const Header = () => {
           ))}
         </nav>
 
-        <div className="hidden md:flex items-center gap-2 text-xs text-muted-foreground">
-          <span>Shopping Lindóia</span>
+        <div className="hidden md:flex items-center gap-4">
+          <a
+            href="https://www.instagram.com/glamour_lindoia/"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="text-muted-foreground hover:text-primary transition-colors p-2"
+            aria-label="Instagram"
+          >
+            <Instagram className="h-5 w-5" />
+          </a>
+          <div className="h-4 w-px bg-border mx-1" />
+          <span className="text-[10px] tracking-widest uppercase text-muted-foreground font-light px-2 py-1 rounded-full bg-secondary/50">Shopping Lindóia</span>
         </div>
 
-        <button onClick={() => setMenuOpen(!menuOpen)} className="md:hidden text-foreground">
-          {menuOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
-        </button>
+        <div className="flex items-center gap-2 md:hidden">
+          <a
+            href="https://www.instagram.com/glamour_lindoia/"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="text-muted-foreground hover:text-primary transition-colors p-2"
+            aria-label="Instagram"
+          >
+            <Instagram className="h-5 w-5" />
+          </a>
+          <button onClick={() => setMenuOpen(!menuOpen)} className="text-foreground p-2">
+            {menuOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
+          </button>
+        </div>
       </div>
 
       {menuOpen && (

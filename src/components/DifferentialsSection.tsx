@@ -1,8 +1,8 @@
 const items = [
   { title: "Procedimento rápido (menos de 1 minuto)" },
-  { title: "Materiais esterilizados e técnica adequada" },
-  { title: "Atendimento cuidadoso, inclusive para crianças" },
-  { title: "Ideal para primeiro furo ou renovar o estilo" },
+  { title: "Escala de cuidados e técnica adequada" },
+  { title: "Atendimento cuidadoso para crianças" },
+  { title: "Garantia de 30 dias para joias (defeitos)" },
 ];
 
 const DifferentialsSection = () => {
