@@ -1,4 +1,5 @@
 import { ArrowRight, MessageCircle } from "lucide-react";
+import { trackEvent } from "@/lib/utils";
 
 const WHATSAPP_NUMBER = "555189703450";
 
@@ -49,7 +50,8 @@ const ProductsSection = () => {
     },
   ];
 
-  const handleCategoryClick = (message: string) => {
+  const handleCategoryClick = (title: string, message: string) => {
+    trackEvent("click_whatsapp_category", "Conversion", title);
     const encodedMessage = encodeURIComponent(message);
     const whatsappUrl = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodedMessage}`;
     window.open(whatsappUrl, "_blank");
@@ -76,7 +78,7 @@ const ProductsSection = () => {
           {categories.map((category) => (
             <button
               key={category.title}
-              onClick={() => handleCategoryClick(category.message)}
+              onClick={() => handleCategoryClick(category.title, category.message)}
               className="group bg-card rounded-2xl overflow-hidden shadow-soft hover:shadow-gold transition-all duration-500 hover:-translate-y-2 text-left cursor-pointer border-0"
             >
               <div className="aspect-[4/5] overflow-hidden relative">

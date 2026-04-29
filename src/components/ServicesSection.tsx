@@ -1,5 +1,11 @@
+import { trackEvent } from "@/lib/utils";
+
 const ServicesSection = () => {
   const beforeAfterImage = "/assets/imagem-brincos.png";
+
+  const handleAgendarClick = () => {
+    trackEvent("click_whatsapp_services", "Conversion", "Agendar agora pelo WhatsApp");
+  };
 
   return (
     <section id="servicos" className="py-24 bg-background">
@@ -58,6 +64,7 @@ const ServicesSection = () => {
                     href="https://wa.me/555189703450?text=Olá! Gostaria de agendar minha perfuração de orelha por R$59,90."
                     target="_blank"
                     rel="noopener noreferrer"
+                    onClick={handleAgendarClick}
                     className="inline-block w-full lg:w-auto bg-primary text-primary-foreground font-medium px-10 py-4 rounded-full text-sm tracking-wide hover:shadow-gold transition-all text-center"
                   >
                     Agendar agora pelo WhatsApp

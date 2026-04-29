@@ -1,5 +1,12 @@
+import { trackEvent } from "@/lib/utils";
+
 const HeroSection = () => {
   const heroImg = "/assets/hero-jewelry.jpg";
+
+  const handleWhatsAppClick = () => {
+    trackEvent("click_whatsapp_hero", "Conversion", "WhatsApp Hero Button");
+  };
+
   return (
     <section id="inicio" className="relative min-h-[85vh] lg:min-h-[90vh] flex items-center overflow-hidden bg-background pt-24 pb-12 lg:pb-16">
       <div className="absolute top-0 right-0 w-[600px] h-[600px] bg-rose-soft/40 rounded-full blur-3xl -translate-y-1/2 translate-x-1/3" />
@@ -39,6 +46,7 @@ const HeroSection = () => {
                 href="https://wa.me/555189703450?text=Olá! Gostaria de agendar minha perfuração de orelha com brinco incluso por R$59,90."
                 target="_blank"
                 rel="noopener noreferrer"
+                onClick={handleWhatsAppClick}
                 className="group bg-primary text-primary-foreground font-medium px-8 py-3.5 rounded-full text-sm tracking-wide hover:shadow-gold transition-all"
               >
                 Falar no WhatsApp
