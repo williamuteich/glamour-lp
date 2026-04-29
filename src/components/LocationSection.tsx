@@ -1,4 +1,10 @@
+import { trackWhatsAppConversion } from "@/lib/utils";
+
 const LocationSection = () => {
+  const handleWhatsAppClick = () => {
+    trackWhatsAppConversion();
+  };
+
   return (
     <section id="localizacao" className="py-24 bg-background">
       <div className="container mx-auto px-4">
@@ -48,6 +54,7 @@ const LocationSection = () => {
                 href="https://wa.me/555189703450?text=Olá!"
                 target="_blank"
                 rel="noopener noreferrer"
+                onClick={handleWhatsAppClick}
                 className="inline-block bg-primary/10 text-primary hover:bg-primary/20 font-medium px-6 py-3 rounded-full text-sm tracking-wide transition-all"
               >
                 Falar no WhatsApp

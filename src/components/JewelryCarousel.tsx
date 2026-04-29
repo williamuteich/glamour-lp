@@ -1,3 +1,4 @@
+import { trackWhatsAppConversion } from "@/lib/utils";
 import {
     Carousel,
     CarouselContent,
@@ -54,6 +55,7 @@ const JewelryCarousel = () => {
                                         href={`https://wa.me/555189703450?text=${encodeURIComponent(`Olá! Gostaria de agendar minha perfuração e já quero reservar o modelo: ${item.name}`)}`}
                                         target="_blank"
                                         rel="noopener noreferrer"
+                                        onClick={trackWhatsAppConversion}
                                         className="mt-4 w-full bg-primary/5 text-primary border border-primary/20 hover:bg-primary hover:text-primary-foreground transition-colors font-medium text-[9px] sm:text-[10px] uppercase tracking-wider py-2 sm:py-2.5 rounded-md flex justify-center text-center items-center"
                                     >
                                         Agendar & Reservar

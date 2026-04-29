@@ -1,10 +1,10 @@
-import { trackEvent } from "@/lib/utils";
+import { trackWhatsAppConversion } from "@/lib/utils";
 
 const HeroSection = () => {
   const heroImg = "/assets/hero-jewelry.jpg";
 
   const handleWhatsAppClick = () => {
-    trackEvent("click_whatsapp_hero", "Conversion", "WhatsApp Hero Button");
+    trackWhatsAppConversion();
   };
 
   return (

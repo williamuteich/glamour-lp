@@ -1,5 +1,5 @@
 import { ArrowRight, MessageCircle } from "lucide-react";
-import { trackEvent } from "@/lib/utils";
+import { trackWhatsAppConversion } from "@/lib/utils";
 
 const WHATSAPP_NUMBER = "555189703450";
 
@@ -51,7 +51,7 @@ const ProductsSection = () => {
   ];
 
   const handleCategoryClick = (title: string, message: string) => {
-    trackEvent("click_whatsapp_category", "Conversion", title);
+    trackWhatsAppConversion();
     const encodedMessage = encodeURIComponent(message);
     const whatsappUrl = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodedMessage}`;
     window.open(whatsappUrl, "_blank");

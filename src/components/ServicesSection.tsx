@@ -1,10 +1,10 @@
-import { trackEvent } from "@/lib/utils";
+import { trackWhatsAppConversion } from "@/lib/utils";
 
 const ServicesSection = () => {
   const beforeAfterImage = "/assets/imagem-brincos.png";
 
   const handleAgendarClick = () => {
-    trackEvent("click_whatsapp_services", "Conversion", "Agendar agora pelo WhatsApp");
+    trackWhatsAppConversion();
   };
 
   return (

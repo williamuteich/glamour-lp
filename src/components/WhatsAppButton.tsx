@@ -1,9 +1,9 @@
 import { MessageCircle } from "lucide-react";
-import { trackEvent } from "@/lib/utils";
+import { trackWhatsAppConversion } from "@/lib/utils";
 
 const WhatsAppButton = () => {
   const handleClick = () => {
-    trackEvent("click_whatsapp_floating", "Conversion", "WhatsApp Floating Button");
+    trackWhatsAppConversion();
   };
 
   return (
