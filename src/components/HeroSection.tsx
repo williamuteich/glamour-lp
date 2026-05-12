@@ -1,10 +1,14 @@
-import { trackWhatsAppConversion } from "@/lib/utils";
+import { trackWhatsAppConversion, trackMapsClick } from "@/lib/utils";
 
 const HeroSection = () => {
   const heroImg = "/assets/hero-jewelry.jpg";
 
   const handleWhatsAppClick = () => {
     trackWhatsAppConversion();
+  };
+
+  const handleMapsClick = () => {
+    trackMapsClick();
   };
 
   return (
@@ -52,10 +56,13 @@ const HeroSection = () => {
                 Quero fazer minha perfuração
               </a>
               <a
-                href="#localizacao"
+                href="https://www.google.com/maps/search/?api=1&query=Glamour+Lindóia,+Shopping+Lindóia,+Porto+Alegre"
+                target="_blank"
+                rel="noopener noreferrer"
+                onClick={handleMapsClick}
                 className="border border-border text-foreground px-8 py-3.5 rounded-full text-sm tracking-wide hover:bg-secondary transition font-light"
               >
-                Como chegar
+                Como nos encontrar
               </a>
             </div>
           </div>
