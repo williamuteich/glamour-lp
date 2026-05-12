@@ -8,7 +8,7 @@ const WhatsAppButton = () => {
 
   return (
     <a
-      href="https://wa.me/555189703450?text=Olá! Gostaria de agendar minha perfuração de orelha com acompanhamento de joia incluído."
+      href={`https://wa.me/555189703450?text=${encodeURIComponent("Olá! Gostaria de fazer a minha perfuração + joia inclusa por R$59,90.")}`}
       target="_blank"
       rel="noopener noreferrer"
       onClick={handleClick}

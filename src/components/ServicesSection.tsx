@@ -61,13 +61,13 @@ const ServicesSection = () => {
 
                 <div className="pt-8 w-full">
                   <a
-                    href="https://wa.me/555189703450?text=Olá! Gostaria de agendar minha perfuração de orelha por R$59,90."
+                    href={`https://wa.me/555189703450?text=${encodeURIComponent("Olá! Gostaria de fazer a minha perfuração + joia inclusa por R$59,90.")}`}
                     target="_blank"
                     rel="noopener noreferrer"
                     onClick={handleAgendarClick}
                     className="inline-block w-full lg:w-auto bg-primary text-primary-foreground font-medium px-10 py-4 rounded-full text-sm tracking-wide hover:shadow-gold transition-all text-center"
                   >
-                    Agendar agora pelo WhatsApp
+                    Quero fazer minha perfuração
                   </a>
                 </div>
               </div>

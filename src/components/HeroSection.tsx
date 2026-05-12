@@ -43,13 +43,13 @@ const HeroSection = () => {
 
             <div className="flex flex-wrap gap-4 pt-2">
               <a
-                href="https://wa.me/555189703450?text=Olá! Gostaria de agendar minha perfuração de orelha com brinco incluso por R$59,90."
+                href={`https://wa.me/555189703450?text=${encodeURIComponent("Olá! Gostaria de fazer a minha perfuração + joia inclusa por R$59,90.")}`}
                 target="_blank"
                 rel="noopener noreferrer"
                 onClick={handleWhatsAppClick}
                 className="group bg-primary text-primary-foreground font-medium px-8 py-3.5 rounded-full text-sm tracking-wide hover:shadow-gold transition-all"
               >
-                Falar no WhatsApp
+                Quero fazer minha perfuração
               </a>
               <a
                 href="#localizacao"

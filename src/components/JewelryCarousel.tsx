@@ -52,13 +52,13 @@ const JewelryCarousel = () => {
                                         <p className="text-muted-foreground text-[10px] sm:text-[11px] font-medium tracking-wide mt-1">{item.type}</p>
                                     </div>
                                     <a
-                                        href={`https://wa.me/555189703450?text=${encodeURIComponent(`Olá! Gostaria de agendar minha perfuração e já quero reservar o modelo: ${item.name}`)}`}
+                                        href={`https://wa.me/555189703450?text=${encodeURIComponent(`Olá! Gostaria de fazer minha perfuração e já quero reservar o modelo: ${item.name}`)}`}
                                         target="_blank"
                                         rel="noopener noreferrer"
                                         onClick={trackWhatsAppConversion}
                                         className="mt-4 w-full bg-primary/5 text-primary border border-primary/20 hover:bg-primary hover:text-primary-foreground transition-colors font-medium text-[9px] sm:text-[10px] uppercase tracking-wider py-2 sm:py-2.5 rounded-md flex justify-center text-center items-center"
                                     >
-                                        Agendar & Reservar
+                                        Reservar & Fazer Perfuração
                                     </a>
                                 </div>
                             </CarouselItem>
