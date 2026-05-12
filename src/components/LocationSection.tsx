@@ -1,8 +1,12 @@
-import { trackWhatsAppConversion } from "@/lib/utils";
+import { trackWhatsAppConversion, trackMapsClick } from "@/lib/utils";
 
 const LocationSection = () => {
   const handleWhatsAppClick = () => {
     trackWhatsAppConversion();
+  };
+
+  const handleMapsClick = () => {
+    trackMapsClick();
   };
 
   return (
@@ -49,15 +53,24 @@ const LocationSection = () => {
               <p className="text-muted-foreground text-base font-light">Dom: Fechado</p>
             </div>
 
-            <div className="pt-4">
+            <div className="pt-4 flex flex-col sm:flex-row gap-4">
               <a
                 href="https://wa.me/555189703450?text=Olá!"
                 target="_blank"
                 rel="noopener noreferrer"
                 onClick={handleWhatsAppClick}
-                className="inline-block bg-primary/10 text-primary hover:bg-primary/20 font-medium px-6 py-3 rounded-full text-sm tracking-wide transition-all"
+                className="inline-block text-center bg-primary/10 text-primary hover:bg-primary/20 font-medium px-6 py-3 rounded-full text-sm tracking-wide transition-all"
               >
                 Falar no WhatsApp
+              </a>
+              <a
+                href="https://www.google.com/maps/search/?api=1&query=Glamour+Lindóia,+Shopping+Lindóia,+Porto+Alegre"
+                target="_blank"
+                rel="noopener noreferrer"
+                onClick={handleMapsClick}
+                className="inline-block text-center bg-primary text-primary-foreground hover:bg-primary/90 font-medium px-6 py-3 rounded-full text-sm tracking-wide transition-all"
+              >
+                Como Chegar
               </a>
             </div>
           </div>
