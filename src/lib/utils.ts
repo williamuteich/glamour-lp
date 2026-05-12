@@ -29,3 +29,12 @@ export function trackMapsClick() {
     });
   }
 }
+
+export function trackOfflineConversion() {
+  if (typeof window !== "undefined" && (window as any).gtag) {
+    (window as any).gtag("event", "conversion", {
+      send_to: "AW-18090998787/OjgCCN2V1KscEIP4urJD",
+    });
+  }
+}
+
