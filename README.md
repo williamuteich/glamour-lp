@@ -63,3 +63,27 @@ Simply open your hosting service and deploy the `dist` folder after building wit
 Yes, you can!
 
 To connect a domain, configure your DNS settings to point to your hosting provider.
+
+## Visitor tracking helper
+
+This repo includes a small client-side helper to call the Visitor API endpoints.
+
+- File: [src/lib/visitorTracking.ts](src/lib/visitorTracking.ts)
+- Env: set `VITE_VISITOR_API_URL` (defaults to `http://localhost:3000`).
+
+Usage example (in your external React app):
+
+```ts
+import { captureVisitor, confirmVisitor } from './src/lib/visitorTracking';
+
+// first page load (non-blocking, scheduled during idle)
+captureVisitor({ visitorId: 'uuid-123', gclid: '123abc' });
+
+// when QR confirm happens (send immediately)
+await confirmVisitor({ visitorId: 'uuid-123', gclid: '123abc' });
+```
+
+Notes:
+- `captureVisitor` schedules the request using `requestIdleCallback` or `setTimeout` (default 1500ms) to avoid blocking initial load.
+- `confirmVisitor` sends confirmation immediately and marks `converted = true`.
+

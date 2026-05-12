@@ -2,6 +2,7 @@ import { useState, useEffect, useRef } from "react";
 import { useSearchParams } from "react-router-dom";
 import { CheckCircle, MapPin, ShieldAlert } from "lucide-react";
 import { trackOfflineConversion } from "@/lib/utils";
+import { confirmVisitor } from "@/lib/visitorTracking";
 
 const TOKEN_SECRETO = "vip-glamour";
 const CACHE_KEY = "glamour_last_visit";
@@ -11,6 +12,9 @@ const Confirmacao = () => {
   const [searchParams] = useSearchParams();
   const [isInvalid, setIsInvalid] = useState(false);
   const [isReady, setIsReady] = useState(false);
+  const [isConfirming, setIsConfirming] = useState(false);
+  const [confirmed, setConfirmed] = useState(false);
+  const [confirmError, setConfirmError] = useState(false);
   
   // useRef previne duplo disparo acidental no React StrictMode (ambiente de desenvolvimento)
   const hasTriggered = useRef(false);
@@ -37,14 +41,56 @@ const Confirmacao = () => {
       }
     }
 
-    if (!isFlood) {
-      // Dispara o Google Ads automaticamente no carregamento da página
-      trackOfflineConversion();
-      // Salva no dispositivo para evitar flood
-      localStorage.setItem(CACHE_KEY, now.toString());
-    }
+    const doConfirm = async () => {
+      if (isFlood) {
+        setIsReady(true);
+        return;
+      }
 
-    setIsReady(true);
+      setIsConfirming(true);
+
+      // build visitor data from localStorage or URL
+      const stored = localStorage.getItem("visitor_tracking") || localStorage.getItem("visitorTracking");
+      let visitor: any = null;
+      if (stored) {
+        try {
+          visitor = JSON.parse(stored);
+        } catch (e) {
+          visitor = null;
+        }
+      }
+      if (!visitor) {
+        const vid = searchParams.get("vid") || searchParams.get("visitorId") || `v-${Date.now()}`;
+        visitor = {
+          visitorId: vid,
+          gclid: searchParams.get("gclid") || undefined,
+          utmSource: searchParams.get("utm_source") || searchParams.get("utmSource") || undefined,
+          utmCampaign: searchParams.get("utm_campaign") || searchParams.get("utmCampaign") || undefined,
+          userAgent: navigator.userAgent,
+        };
+        try {
+          localStorage.setItem("visitor_tracking", JSON.stringify(visitor));
+        } catch (e) {
+          // ignore
+        }
+      }
+
+      try {
+        await confirmVisitor(visitor);
+        // Dispara o Google Ads automaticamente no carregamento da página
+        trackOfflineConversion();
+        // Salva no dispositivo para evitar flood
+        localStorage.setItem(CACHE_KEY, now.toString());
+        setConfirmed(true);
+      } catch (e) {
+        setConfirmError(true);
+      } finally {
+        setIsConfirming(false);
+        setIsReady(true);
+      }
+    };
+
+    void doConfirm();
   }, [searchParams]);
 
   if (isInvalid) {
@@ -59,8 +105,60 @@ const Confirmacao = () => {
     );
   }
 
+  if (isConfirming) {
+    return (
+      <div className="min-h-screen bg-background flex items-center justify-center p-4">
+        <div className="text-center">
+          <div className="w-16 h-16 border-4 border-t-transparent border-primary rounded-full animate-spin mx-auto mb-4" />
+          <h2 className="font-display text-xl font-medium text-foreground mb-2">Confirmando sua visita...</h2>
+          <p className="text-muted-foreground max-w-sm">Aguarde um instante e não feche a página.</p>
+        </div>
+      </div>
+    );
+  }
+
   if (!isReady) {
     return <div className="min-h-screen bg-background" />; // Tela vazia enquanto processa (milissegundos)
+  }
+
+  if (confirmError) {
+    return (
+      <div className="min-h-screen bg-background flex flex-col items-center justify-center p-4">
+        <ShieldAlert className="text-destructive w-16 h-16 mb-4" />
+        <h1 className="font-display text-2xl font-medium text-foreground mb-2">Erro ao confirmar</h1>
+        <p className="text-muted-foreground text-center max-w-sm mb-6">
+          Não foi possível confirmar sua visita no momento. Tente novamente em alguns segundos.
+        </p>
+        <button
+          className="px-6 py-2 bg-primary text-white rounded-2xl"
+          onClick={() => {
+            // retry by reloading the page to retrigger effect
+            window.location.reload();
+          }}
+        >
+          Tentar novamente
+        </button>
+      </div>
+    );
+  }
+
+  if (!confirmed) {
+    // likely flood case — show informational state
+    return (
+      <div className="min-h-screen bg-background flex flex-col items-center justify-center p-4">
+        <MapPin className="text-primary w-16 h-16 mb-4" />
+        <h1 className="font-display text-2xl font-medium text-foreground mb-2">Visita já registrada</h1>
+        <p className="text-muted-foreground text-center max-w-sm mb-6">
+          Detectamos um registro recente desta visita. Se você acha que isto é um erro, tente novamente mais tarde.
+        </p>
+        <a
+          href="/"
+          className="inline-block text-sm text-muted-foreground hover:text-primary transition-colors underline underline-offset-4"
+        >
+          Voltar para a página inicial
+        </a>
+      </div>
+    );
   }
 
   return (
