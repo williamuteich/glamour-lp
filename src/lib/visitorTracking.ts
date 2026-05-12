@@ -8,7 +8,7 @@ export type VisitorData = {
 };
 import axios from "axios";
 
-const API_BASE = "https://googlegclid.bazarelegance.com.br";
+const API_BASE = "";
 
 function sleep(ms: number) {
   return new Promise((r) => setTimeout(r, ms));

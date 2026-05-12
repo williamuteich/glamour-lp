@@ -12,10 +12,9 @@ export default defineConfig(({ mode }) => ({
     },
     proxy: {
       "/api": {
-        target: "https://googlegclid.bazarelegance.com.br",
+        target: "https://www.glamourlindoia.com.br",
         changeOrigin: true,
         secure: true,
-        rewrite: (path) => path.replace(/^\/api/, "/api"),
       },
     },
   },
