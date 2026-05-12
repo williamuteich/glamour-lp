@@ -49,28 +49,33 @@ const Confirmacao = () => {
       setIsConfirming(true);
 
       const stored = localStorage.getItem("visitor_tracking") || localStorage.getItem("visitorTracking");
+      const urlVid = searchParams.get("vid") || searchParams.get("visitorId");
+      const urlExtras = {
+        gclid: searchParams.get("gclid") || undefined,
+        utmSource: searchParams.get("utm_source") || searchParams.get("utmSource") || undefined,
+        utmCampaign: searchParams.get("utm_campaign") || searchParams.get("utmCampaign") || undefined,
+      };
       let visitor: any = null;
       if (stored) {
         try {
-          visitor = JSON.parse(stored);
+          const parsed = JSON.parse(stored);
+          visitor = { ...parsed, ...Object.fromEntries(Object.entries(urlExtras).filter(([, v]) => v !== undefined)) };
+          if (urlVid) visitor.visitorId = urlVid;
         } catch (e) {
           visitor = null;
         }
       }
       if (!visitor) {
-        const vid = searchParams.get("vid") || searchParams.get("visitorId") || `v-${Date.now()}`;
+        const vid = urlVid || `v-${Date.now()}`;
         visitor = {
           visitorId: vid,
-          gclid: searchParams.get("gclid") || undefined,
-          utmSource: searchParams.get("utm_source") || searchParams.get("utmSource") || undefined,
-          utmCampaign: searchParams.get("utm_campaign") || searchParams.get("utmCampaign") || undefined,
+          ...Object.fromEntries(Object.entries(urlExtras).filter(([, v]) => v !== undefined)),
           userAgent: navigator.userAgent,
         };
-        try {
-          localStorage.setItem("visitor_tracking", JSON.stringify(visitor));
-        } catch (e) {
-          // ignore
-        }
+      }
+      try {
+        localStorage.setItem("visitor_tracking", JSON.stringify(visitor));
+      } catch (e) {
       }
 
       try {
@@ -147,7 +152,7 @@ const Confirmacao = () => {
   }
 
   if (!isReady) {
-    return <div className="min-h-screen bg-background" />; // Tela vazia enquanto processa (milissegundos)
+    return <div className="min-h-screen bg-background" />;
   }
 
   if (confirmError) {

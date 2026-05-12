@@ -54,11 +54,9 @@ export async function confirmVisitor(data: VisitorData) {
         const blob = new Blob([JSON.stringify(payload)], { type: "application/json" });
         navigator.sendBeacon(beaconUrl, blob);
       } catch (e) {
-        // ignore beacon errors
       }
     }
   } catch (e) {
-    // ignore unexpected errors
   }
 }
 

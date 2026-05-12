@@ -19,7 +19,6 @@ function getStoredVisitor() {
       try {
         return JSON.parse(v) as VisitorData;
       } catch (e) {
-        // ignore
       }
     }
   }
@@ -30,7 +29,6 @@ function saveVisitor(v: VisitorData) {
   try {
     localStorage.setItem("visitor_tracking", JSON.stringify(v));
   } catch (e) {
-    // ignore
   }
 }
 
@@ -49,18 +47,29 @@ function makeVisitorFromLocation(): VisitorData {
 
 const App = () => {
   useEffect(() => {
-    // create or reuse visitor data
     let visitor = getStoredVisitor();
+    const params = new URLSearchParams(window.location.search);
+    const urlExtras: Partial<VisitorData> = {
+      gclid: params.get("gclid") || undefined,
+      utmSource: params.get("utm_source") || params.get("utmSource") || undefined,
+      utmCampaign: params.get("utm_campaign") || params.get("utmCampaign") || undefined,
+    };
     if (!visitor) {
       visitor = makeVisitorFromLocation();
+     
+      visitor = { ...visitor, ...urlExtras };
       saveVisitor(visitor);
       captureVisitor(visitor);
     } else {
-      // refresh capture (non-blocking)
-      captureVisitor(visitor);
+      const merged = { ...visitor, ...Object.fromEntries(Object.entries(urlExtras).filter(([, v]) => v !== undefined)) } as VisitorData;
+      const changed = JSON.stringify(merged) !== JSON.stringify(visitor);
+      if (changed) {
+        saveVisitor(merged);
+        captureVisitor(merged);
+      } else {
+        captureVisitor(visitor);
+      }
     }
-
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return (
