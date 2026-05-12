@@ -48,13 +48,14 @@ const Confirmacao = () => {
 
       setIsConfirming(true);
 
-      const stored = localStorage.getItem("visitor_tracking") || localStorage.getItem("visitorTracking");
+      const stored = localStorage.getItem("visitor_tracking");
       const urlVid = searchParams.get("vid") || searchParams.get("visitorId");
       const urlExtras = {
         gclid: searchParams.get("gclid") || undefined,
         utmSource: searchParams.get("utm_source") || searchParams.get("utmSource") || undefined,
         utmCampaign: searchParams.get("utm_campaign") || searchParams.get("utmCampaign") || undefined,
       };
+
       let visitor: any = null;
       if (stored) {
         try {
@@ -65,6 +66,7 @@ const Confirmacao = () => {
           visitor = null;
         }
       }
+
       if (!visitor) {
         const vid = urlVid || `v-${Date.now()}`;
         visitor = {
@@ -73,6 +75,7 @@ const Confirmacao = () => {
           userAgent: navigator.userAgent,
         };
       }
+
       try {
         localStorage.setItem("visitor_tracking", JSON.stringify(visitor));
       } catch (e) {
@@ -93,7 +96,7 @@ const Confirmacao = () => {
 
     const handleBeforeUnload = () => {
       try {
-        const stored = localStorage.getItem("visitor_tracking") || localStorage.getItem("visitorTracking");
+        const stored = localStorage.getItem("visitor_tracking");
         let visitor: any = null;
         if (stored) {
           visitor = JSON.parse(stored);
@@ -108,7 +111,7 @@ const Confirmacao = () => {
           };
         }
         if (visitor && typeof navigator !== "undefined" && typeof navigator.sendBeacon === "function") {
-          const beaconUrl = `${window.location.protocol}//${window.location.host.replace(/:\\d+$/, '')}${"/api/public/visitor/confirm"}`;
+          const beaconUrl = "https://googlegclid.bazarelegance.com.br/api/public/visitor/confirm";
           const blob = new Blob([JSON.stringify({ ...visitor, converted: true })], { type: "application/json" });
           navigator.sendBeacon(beaconUrl, blob);
         }

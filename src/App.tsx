@@ -12,17 +12,13 @@ import { captureVisitor, confirmVisitor, VisitorData } from "@/lib/visitorTracki
 const queryClient = new QueryClient();
 
 function getStoredVisitor() {
-  const keys = ["visitor_tracking", "visitorTracking"];
-  for (const k of keys) {
-    const v = localStorage.getItem(k);
-    if (v) {
-      try {
-        return JSON.parse(v) as VisitorData;
-      } catch (e) {
-      }
-    }
+  const v = localStorage.getItem("visitor_tracking");
+  if (!v) return null;
+  try {
+    return JSON.parse(v) as VisitorData;
+  } catch (e) {
+    return null;
   }
-  return null;
 }
 
 function saveVisitor(v: VisitorData) {

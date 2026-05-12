@@ -1,14 +1,13 @@
 import type { VisitorData } from "@/lib/visitorTracking";
 
 function readStoredVisitor() {
-  const keys = ["visitor_tracking", "visitorTracking"];
-  for (const key of keys) {
-    const value = localStorage.getItem(key);
-    if (!value) continue;
-    try {
-      return JSON.parse(value) as VisitorData;
-    } catch (e) {
-    }
+  const key = "visitor_tracking";
+  const value = localStorage.getItem(key);
+  if (!value) return null;
+  try {
+    return JSON.parse(value) as VisitorData;
+  } catch (e) {
+    return null;
   }
   return null;
 }
@@ -16,7 +15,6 @@ function readStoredVisitor() {
 function writeStoredVisitor(visitor: VisitorData) {
   const serialized = JSON.stringify(visitor);
   localStorage.setItem("visitor_tracking", serialized);
-  localStorage.setItem("visitorTracking", serialized);
 }
 
 export function bootstrapVisitorTracking() {
