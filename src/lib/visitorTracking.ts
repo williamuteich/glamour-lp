@@ -8,26 +8,27 @@ export type VisitorData = {
 };
 import axios from "axios";
 
-const API_BASE = (import.meta as any).env?.VITE_VISITOR_API_URL || "http://localhost:3000";
+const API_BASE = "https://googlegclid.bazarelegance.com.br";
 
 function sleep(ms: number) {
   return new Promise((r) => setTimeout(r, ms));
 }
 
-async function post(path: string, body: unknown, maxAttempts = 3) {
+async function post(path: string, body: unknown, maxAttempts = 3): Promise<boolean> {
   const url = `${API_BASE.replace(/\/$/, "")}${path}`;
   let attempt = 0;
   while (attempt < maxAttempts) {
     try {
       await axios.post(url, body, { headers: { "Content-Type": "application/json" }, timeout: 5000 });
-      return;
+      return true;
     } catch (err) {
       attempt += 1;
-      if (attempt >= maxAttempts) return;
+      if (attempt >= maxAttempts) return false;
       const backoff = Math.pow(2, attempt) * 200 + Math.random() * 100;
       await sleep(backoff);
     }
   }
+  return false;
 }
 
 function scheduleSend(fn: () => void, delayMs = 1500) {
@@ -46,9 +47,18 @@ export function captureVisitor(data: VisitorData, options?: { delayMs?: number }
 export async function confirmVisitor(data: VisitorData) {
   const payload = { ...data, converted: true };
   try {
-    await post("/api/public/visitor/confirm", payload);
+    const ok = await post("/api/public/visitor/confirm", payload);
+    if (!ok && typeof navigator !== "undefined" && typeof navigator.sendBeacon === "function") {
+      try {
+        const beaconUrl = `${API_BASE.replace(/\/$/, "")}/api/public/visitor/confirm`;
+        const blob = new Blob([JSON.stringify(payload)], { type: "application/json" });
+        navigator.sendBeacon(beaconUrl, blob);
+      } catch (e) {
+        // ignore beacon errors
+      }
+    }
   } catch (e) {
-    // ignore
+    // ignore unexpected errors
   }
 }
 

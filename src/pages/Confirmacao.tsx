@@ -16,7 +16,6 @@ const Confirmacao = () => {
   const [confirmed, setConfirmed] = useState(false);
   const [confirmError, setConfirmError] = useState(false);
   
-  // useRef previne duplo disparo acidental no React StrictMode (ambiente de desenvolvimento)
   const hasTriggered = useRef(false);
 
   useEffect(() => {
@@ -49,7 +48,6 @@ const Confirmacao = () => {
 
       setIsConfirming(true);
 
-      // build visitor data from localStorage or URL
       const stored = localStorage.getItem("visitor_tracking") || localStorage.getItem("visitorTracking");
       let visitor: any = null;
       if (stored) {
@@ -77,9 +75,7 @@ const Confirmacao = () => {
 
       try {
         await confirmVisitor(visitor);
-        // Dispara o Google Ads automaticamente no carregamento da página
         trackOfflineConversion();
-        // Salva no dispositivo para evitar flood
         localStorage.setItem(CACHE_KEY, now.toString());
         setConfirmed(true);
       } catch (e) {
@@ -90,7 +86,40 @@ const Confirmacao = () => {
       }
     };
 
+    const handleBeforeUnload = () => {
+      try {
+        const stored = localStorage.getItem("visitor_tracking") || localStorage.getItem("visitorTracking");
+        let visitor: any = null;
+        if (stored) {
+          visitor = JSON.parse(stored);
+        } else {
+          const vid = searchParams.get("vid") || searchParams.get("visitorId") || `v-${Date.now()}`;
+          visitor = {
+            visitorId: vid,
+            gclid: searchParams.get("gclid") || undefined,
+            utmSource: searchParams.get("utm_source") || searchParams.get("utmSource") || undefined,
+            utmCampaign: searchParams.get("utm_campaign") || searchParams.get("utmCampaign") || undefined,
+            userAgent: navigator.userAgent,
+          };
+        }
+        if (visitor && typeof navigator !== "undefined" && typeof navigator.sendBeacon === "function") {
+          const beaconUrl = `${window.location.protocol}//${window.location.host.replace(/:\\d+$/, '')}${"/api/public/visitor/confirm"}`;
+          const blob = new Blob([JSON.stringify({ ...visitor, converted: true })], { type: "application/json" });
+          navigator.sendBeacon(beaconUrl, blob);
+        }
+      } catch (e) {
+      }
+    };
+
+    window.addEventListener("beforeunload", handleBeforeUnload);
+    window.addEventListener("pagehide", handleBeforeUnload);
+
     void doConfirm();
+
+    return () => {
+      window.removeEventListener("beforeunload", handleBeforeUnload);
+      window.removeEventListener("pagehide", handleBeforeUnload);
+    };
   }, [searchParams]);
 
   if (isInvalid) {
@@ -132,7 +161,6 @@ const Confirmacao = () => {
         <button
           className="px-6 py-2 bg-primary text-white rounded-2xl"
           onClick={() => {
-            // retry by reloading the page to retrigger effect
             window.location.reload();
           }}
         >
@@ -143,7 +171,6 @@ const Confirmacao = () => {
   }
 
   if (!confirmed) {
-    // likely flood case — show informational state
     return (
       <div className="min-h-screen bg-background flex flex-col items-center justify-center p-4">
         <MapPin className="text-primary w-16 h-16 mb-4" />
