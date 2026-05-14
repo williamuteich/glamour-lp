@@ -41,7 +41,12 @@ function scheduleSend(fn: () => void, delayMs = 1500) {
 
 export function captureVisitor(data: VisitorData, options?: { delayMs?: number }) {
   const payload = { ...data, converted: false };
-  scheduleSend(() => void post("/api/public/visitor", payload), options?.delayMs ?? 1500);
+  const delay = options?.delayMs ?? 0; // Default to immediate for first capture
+  if (delay === 0) {
+    void post("/api/public/visitor", payload);
+  } else {
+    scheduleSend(() => void post("/api/public/visitor", payload), delay);
+  }
 }
 
 export async function confirmVisitor(data: VisitorData) {

@@ -50,22 +50,38 @@ const App = () => {
       utmSource: params.get("utm_source") || params.get("utmSource") || undefined,
       utmCampaign: params.get("utm_campaign") || params.get("utmCampaign") || undefined,
     };
+    const urlVid = params.get("vid") || params.get("visitorId");
+    
+    let currentVisitor: VisitorData;
     if (!visitor) {
-      visitor = makeVisitorFromLocation();
-     
-      visitor = { ...visitor, ...urlExtras };
-      saveVisitor(visitor);
-      captureVisitor(visitor);
+      currentVisitor = { ...makeVisitorFromLocation(), ...urlExtras };
+      saveVisitor(currentVisitor);
+      captureVisitor(currentVisitor);
     } else {
-      const merged = { ...visitor, ...Object.fromEntries(Object.entries(urlExtras).filter(([, v]) => v !== undefined)) } as VisitorData;
-      const changed = JSON.stringify(merged) !== JSON.stringify(visitor);
+      currentVisitor = { ...visitor, ...Object.fromEntries(Object.entries(urlExtras).filter(([, v]) => v !== undefined)) } as VisitorData;
+      if (urlVid) currentVisitor.visitorId = urlVid;
+      
+      const changed = JSON.stringify(currentVisitor) !== JSON.stringify(visitor);
       if (changed) {
-        saveVisitor(merged);
-        captureVisitor(merged);
-      } else {
-        captureVisitor(visitor);
+        saveVisitor(currentVisitor);
       }
+      captureVisitor(currentVisitor);
     }
+
+    const handleUnload = () => {
+      if (currentVisitor && typeof navigator !== "undefined" && typeof navigator.sendBeacon === "function") {
+        const beaconUrl = "https://googlegclid.bazarelegance.com.br/api/public/visitor";
+        const blob = new Blob([JSON.stringify({ ...currentVisitor, converted: false })], { type: "application/json" });
+        navigator.sendBeacon(beaconUrl, blob);
+      }
+    };
+
+    window.addEventListener("beforeunload", handleUnload);
+    window.addEventListener("pagehide", handleUnload);
+    return () => {
+      window.removeEventListener("beforeunload", handleUnload);
+      window.removeEventListener("pagehide", handleUnload);
+    };
   }, []);
 
   return (

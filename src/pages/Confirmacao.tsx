@@ -6,7 +6,7 @@ import { confirmVisitor } from "@/lib/visitorTracking";
 
 const TOKEN_SECRETO = "vip-glamour";
 const CACHE_KEY = "glamour_last_visit";
-const TEMPO_BLOQUEIO_HORAS = 12;
+const TEMPO_BLOQUEIO_HORAS = 24 * 30;
 
 const Confirmacao = () => {
   const [searchParams] = useSearchParams();
@@ -15,8 +15,9 @@ const Confirmacao = () => {
   const [isConfirming, setIsConfirming] = useState(false);
   const [confirmed, setConfirmed] = useState(false);
   const [confirmError, setConfirmError] = useState(false);
-  
+
   const hasTriggered = useRef(false);
+  const skipBeacon = useRef(false);
 
   useEffect(() => {
     const token = searchParams.get("token");
@@ -30,7 +31,7 @@ const Confirmacao = () => {
 
     const lastVisitStr = localStorage.getItem(CACHE_KEY);
     const now = new Date().getTime();
-    
+
     let isFlood = false;
     if (lastVisitStr) {
       const lastVisitTime = parseInt(lastVisitStr, 10);
@@ -38,6 +39,10 @@ const Confirmacao = () => {
       if (diffHoras < TEMPO_BLOQUEIO_HORAS) {
         isFlood = true;
       }
+    }
+
+    if (isFlood) {
+      skipBeacon.current = true;
     }
 
     const doConfirm = async () => {
@@ -86,6 +91,7 @@ const Confirmacao = () => {
         trackOfflineConversion();
         localStorage.setItem(CACHE_KEY, now.toString());
         setConfirmed(true);
+        skipBeacon.current = true;
       } catch (e) {
         setConfirmError(true);
       } finally {
@@ -95,6 +101,9 @@ const Confirmacao = () => {
     };
 
     const handleBeforeUnload = () => {
+      if (skipBeacon.current) return;
+      skipBeacon.current = true;
+
       try {
         const stored = localStorage.getItem("visitor_tracking");
         let visitor: any = null;
