@@ -2,7 +2,6 @@ import { useState, useEffect, useRef } from "react";
 import { useSearchParams } from "react-router-dom";
 import { CheckCircle, MapPin, ShieldAlert } from "lucide-react";
 import { trackOfflineConversion } from "@/lib/utils";
-import { confirmVisitor } from "@/lib/visitorTracking";
 
 const TOKEN_SECRETO = "vip-glamour";
 const CACHE_KEY = "glamour_last_visit";
@@ -17,7 +16,6 @@ const Confirmacao = () => {
   const [confirmError, setConfirmError] = useState(false);
 
   const hasTriggered = useRef(false);
-  const skipBeacon = useRef(false);
 
   useEffect(() => {
     const token = searchParams.get("token");
@@ -41,10 +39,6 @@ const Confirmacao = () => {
       }
     }
 
-    if (isFlood) {
-      skipBeacon.current = true;
-    }
-
     const doConfirm = async () => {
       if (isFlood) {
         setIsReady(true);
@@ -53,45 +47,12 @@ const Confirmacao = () => {
 
       setIsConfirming(true);
 
-      const stored = localStorage.getItem("visitor_tracking");
-      const urlVid = searchParams.get("vid") || searchParams.get("visitorId");
-      const urlExtras = {
-        gclid: searchParams.get("gclid") || undefined,
-        utmSource: searchParams.get("utm_source") || searchParams.get("utmSource") || undefined,
-        utmCampaign: searchParams.get("utm_campaign") || searchParams.get("utmCampaign") || undefined,
-      };
-
-      let visitor: any = null;
-      if (stored) {
-        try {
-          const parsed = JSON.parse(stored);
-          visitor = { ...parsed, ...Object.fromEntries(Object.entries(urlExtras).filter(([, v]) => v !== undefined)) };
-          if (urlVid) visitor.visitorId = urlVid;
-        } catch (e) {
-          visitor = null;
-        }
-      }
-
-      if (!visitor) {
-        const vid = urlVid || `v-${Date.now()}`;
-        visitor = {
-          visitorId: vid,
-          ...Object.fromEntries(Object.entries(urlExtras).filter(([, v]) => v !== undefined)),
-          userAgent: navigator.userAgent,
-        };
-      }
-
       try {
-        localStorage.setItem("visitor_tracking", JSON.stringify(visitor));
-      } catch (e) {
-      }
-
-      try {
-        await confirmVisitor(visitor);
+        // Simular um processamento curto de 800ms para manter a experiência premium visual
+        await new Promise((resolve) => setTimeout(resolve, 800));
         trackOfflineConversion();
         localStorage.setItem(CACHE_KEY, now.toString());
         setConfirmed(true);
-        skipBeacon.current = true;
       } catch (e) {
         setConfirmError(true);
       } finally {
@@ -100,43 +61,7 @@ const Confirmacao = () => {
       }
     };
 
-    const handleBeforeUnload = () => {
-      if (skipBeacon.current) return;
-      skipBeacon.current = true;
-
-      try {
-        const stored = localStorage.getItem("visitor_tracking");
-        let visitor: any = null;
-        if (stored) {
-          visitor = JSON.parse(stored);
-        } else {
-          const vid = searchParams.get("vid") || searchParams.get("visitorId") || `v-${Date.now()}`;
-          visitor = {
-            visitorId: vid,
-            gclid: searchParams.get("gclid") || undefined,
-            utmSource: searchParams.get("utm_source") || searchParams.get("utmSource") || undefined,
-            utmCampaign: searchParams.get("utm_campaign") || searchParams.get("utmCampaign") || undefined,
-            userAgent: navigator.userAgent,
-          };
-        }
-        if (visitor && typeof navigator !== "undefined" && typeof navigator.sendBeacon === "function") {
-          const beaconUrl = "https://googlegclid.bazarelegance.com.br/api/public/visitor/confirm";
-          const blob = new Blob([JSON.stringify({ ...visitor, converted: true })], { type: "application/json" });
-          navigator.sendBeacon(beaconUrl, blob);
-        }
-      } catch (e) {
-      }
-    };
-
-    window.addEventListener("beforeunload", handleBeforeUnload);
-    window.addEventListener("pagehide", handleBeforeUnload);
-
     void doConfirm();
-
-    return () => {
-      window.removeEventListener("beforeunload", handleBeforeUnload);
-      window.removeEventListener("pagehide", handleBeforeUnload);
-    };
   }, [searchParams]);
 
   if (isInvalid) {
