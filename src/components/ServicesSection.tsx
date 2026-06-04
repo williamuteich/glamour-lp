@@ -8,7 +8,7 @@ const ServicesSection = () => {
   };
 
   return (
-    <section id="servicos" className="py-24 bg-background">
+    <section id="servicos" className="pt-12 pb-24 sm:pt-16 sm:pb-24 lg:py-24 bg-background">
       <div className="container mx-auto px-4">
         <div className="text-center mb-16 space-y-4">
           <div className="flex items-center justify-center gap-3">

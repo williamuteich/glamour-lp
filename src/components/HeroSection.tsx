@@ -12,46 +12,46 @@ const HeroSection = () => {
   };
 
   return (
-    <section id="inicio" className="relative min-h-[85vh] lg:min-h-[90vh] flex items-center overflow-hidden bg-background pt-24 pb-12 lg:pb-16">
+    <section id="inicio" className="relative lg:min-h-[85vh] flex items-center overflow-hidden bg-background pt-20 pb-0 sm:pt-24 sm:pb-0 lg:py-16">
       <div className="absolute top-0 right-0 w-[600px] h-[600px] bg-rose-soft/40 rounded-full blur-3xl -translate-y-1/2 translate-x-1/3" />
       <div className="absolute bottom-0 left-0 w-[400px] h-[400px] bg-primary/5 rounded-full blur-3xl translate-y-1/3 -translate-x-1/2" />
 
       <div className="container relative mx-auto px-4">
         <div className="grid lg:grid-cols-2 gap-10 items-center">
 
-          <div className="space-y-8 animate-fade-in-up relative z-10 md:pr-4">
+          <div className="space-y-6 sm:space-y-8 animate-fade-in-up relative z-10 md:pr-4">
             <div className="space-y-4">
               <div className="flex flex-col gap-1.5">
-                <div className="flex items-center gap-3">
-                  <div className="h-px w-10 bg-primary" />
-                  <p className="text-primary font-body text-xs tracking-[0.35em] uppercase font-semibold">
+                <div className="flex items-center gap-2 sm:gap-3">
+                  <div className="h-px w-6 sm:w-10 bg-primary" />
+                  <p className="text-primary font-body text-[10px] sm:text-xs tracking-[0.25em] sm:tracking-[0.35em] uppercase font-semibold">
                     Shopping Lindóia
                   </p>
                 </div>
-                <div className="flex items-center gap-3">
-                  <div className="h-px w-10 bg-transparent" />
-                  <p className="text-muted-foreground font-body text-[10px] sm:text-xs tracking-widest uppercase font-light">
+                <div className="flex items-center gap-2 sm:gap-3">
+                  <div className="h-px w-6 sm:w-10 bg-transparent" />
+                  <p className="text-muted-foreground font-body text-[9px] sm:text-xs tracking-wider sm:tracking-widest uppercase font-light">
                     Térreo, Sala 160 – Porto Alegre, RS
                   </p>
                 </div>
               </div>
-              <h1 className="font-display text-5xl sm:text-6xl md:text-7xl font-light leading-[1.1] text-foreground">
-                Perfuração de orelha + <br />
-                <span className="text-gradient-gold italic font-medium">par de brincos inclusos</span> <br />
+              <h1 className="font-display text-3xl sm:text-4xl lg:text-7xl font-light leading-[1.2] lg:leading-[1.1] text-foreground">
+                Perfuração de orelha + <br className="hidden lg:inline" />{" "}
+                <span className="text-gradient-gold italic font-medium">par de brincos inclusos</span> <br className="hidden lg:inline" />{" "}
                 por apenas R$59,90
               </h1>
-              <p className="text-base md:text-lg text-muted-foreground font-light leading-relaxed max-w-md">
+              <p className="text-sm sm:text-base md:text-lg text-muted-foreground font-light leading-relaxed max-w-xl lg:max-w-md">
                 Procedimento rápido, seguro e feito na hora no Shopping Lindóia. Ideal para adultos e crianças — sem complicação e sem taxa extra.
               </p>
             </div>
 
-            <div className="flex flex-wrap gap-4 pt-2">
+            <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 pt-2 w-full">
               <a
                 href={`https://wa.me/555189703450?text=${encodeURIComponent("Olá! Gostaria de fazer a minha perfuração + joia inclusa por R$59,90.")}`}
                 target="_blank"
                 rel="noopener noreferrer"
                 onClick={handleWhatsAppClick}
-                className="group bg-primary text-primary-foreground font-medium px-8 py-3.5 rounded-full text-sm tracking-wide hover:shadow-gold transition-all"
+                className="group bg-primary text-primary-foreground font-medium px-8 py-3.5 rounded-full text-sm tracking-wide hover:shadow-gold transition-all text-center w-full sm:w-auto"
               >
                 Quero fazer minha perfuração
               </a>
@@ -60,7 +60,7 @@ const HeroSection = () => {
                 target="_blank"
                 rel="noopener noreferrer"
                 onClick={handleMapsClick}
-                className="border border-border text-foreground px-8 py-3.5 rounded-full text-sm tracking-wide hover:bg-secondary transition font-light"
+                className="border border-border text-foreground px-8 py-3.5 rounded-full text-sm tracking-wide hover:bg-secondary transition font-light text-center w-full sm:w-auto"
               >
                 Como nos encontrar
               </a>
