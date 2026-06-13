@@ -61,7 +61,7 @@ const InstagramSection = () => {
                         <CarouselContent className="-ml-4">
                             {posts.map((url, index) => (
                                 <CarouselItem key={index} className="pl-4 md:basis-1/2 lg:basis-1/4">
-                                    <div className="flex justify-center h-[500px] overflow-hidden rounded-2xl border border-border bg-white shadow-soft">
+                                    <div className="flex justify-center h-[500px] overflow-hidden rounded-none border border-border bg-white shadow-soft">
                                         <blockquote
                                             className="instagram-media w-full"
                                             data-instgrm-captioned
@@ -151,7 +151,7 @@ const InstagramSection = () => {
                         href="https://www.instagram.com/glamour_lindoia/"
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="group bg-primary text-primary-foreground font-medium px-8 py-3.5 rounded-full text-sm tracking-wide hover:shadow-gold transition-all"
+                        className="group bg-primary text-primary-foreground font-bold px-10 py-4 rounded-none text-sm tracking-widest uppercase hover:shadow-gold transition-all"
                     >
                         Ver mais no Instagram
                     </a>

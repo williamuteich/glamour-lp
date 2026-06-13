@@ -133,7 +133,7 @@ const TestimonialsSection = () => {
             <CarouselContent className="-ml-4">
               {testimonials.map((t, idx) => (
                 <CarouselItem key={idx} className="pl-4 md:basis-1/2 lg:basis-1/3">
-                  <div className="h-full bg-card p-6 sm:p-8 rounded-2xl border border-border shadow-soft flex flex-col hover:border-primary/20 transition-colors">
+                  <div className="h-full bg-card p-6 sm:p-8 rounded-none border border-border shadow-soft flex flex-col hover:border-primary/20 transition-colors">
                     <div className="flex justify-between items-start mb-5">
                       <div className="flex items-center gap-3">
                         {t.image ? (
@@ -172,7 +172,7 @@ const TestimonialsSection = () => {
             href="https://share.google/hur5dhDMdpIrqezSP"
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-flex items-center gap-2 bg-secondary text-foreground hover:bg-secondary/80 px-6 py-3 rounded-full font-medium transition-colors shadow-sm text-sm"
+            className="inline-flex items-center gap-2 bg-secondary text-foreground hover:bg-secondary/80 px-6 py-3 rounded-none font-bold uppercase tracking-widest transition-colors shadow-sm text-sm"
           >
             <GoogleIcon />
             Ver mais avaliações no Google

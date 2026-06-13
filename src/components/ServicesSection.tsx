@@ -1,10 +1,14 @@
-import { trackWhatsAppConversion } from "@/lib/utils";
+import { trackWhatsAppConversion, trackOfflineConversion } from "@/lib/utils";
 
 const ServicesSection = () => {
   const beforeAfterImage = "/assets/imagem-brincos.png";
 
   const handleAgendarClick = () => {
     trackWhatsAppConversion();
+  };
+
+  const handleOfflineClick = () => {
+    trackOfflineConversion();
   };
 
   return (
@@ -22,7 +26,7 @@ const ServicesSection = () => {
         </div>
 
         <div className="max-w-5xl mx-auto">
-          <div className="bg-card shadow-soft rounded-3xl overflow-hidden border border-border grid lg:grid-cols-2 items-center">
+          <div className="bg-card shadow-soft rounded-none overflow-hidden border border-border grid lg:grid-cols-2 items-center">
             <div className="relative h-full min-h-[300px] md:min-h-[400px]">
               <img
                 src={beforeAfterImage}
@@ -30,7 +34,7 @@ const ServicesSection = () => {
                 className="absolute inset-0 w-full h-full object-cover"
               />
               <div className="absolute inset-0 bg-black/10" />
-              <div className="absolute top-4 left-4 bg-primary text-white text-[10px] uppercase tracking-widest px-3 py-1 rounded-full font-bold shadow-lg">
+              <div className="absolute top-4 left-4 bg-primary text-white text-[10px] uppercase tracking-widest px-3 py-1 rounded-none font-bold shadow-lg">
                 Resultado Real
               </div>
             </div>
@@ -40,36 +44,50 @@ const ServicesSection = () => {
                 <p className="text-primary font-body text-xs tracking-[0.35em] uppercase font-light">Por apenas</p>
                 <p className="text-primary font-display text-5xl md:text-6xl font-semibold">R$ 59,90</p>
 
-                <div className="flex flex-col items-center lg:items-start gap-3 mt-8 text-foreground/80 font-light text-sm">
+                 <div className="flex flex-col items-center lg:items-start gap-3 mt-8 text-foreground/80 font-light text-sm">
                   <div className="flex items-center gap-2">
                     <div className="w-1.5 h-1.5 rounded-full bg-primary" />
-                    <span>Perfuração somente com pistola</span>
+                    <span><strong>NÃO PRECISA AGENDAR:</strong> É só chegar e fazer na hora! Atendimento por ordem de chegada.</span>
                   </div>
                   <div className="flex items-center gap-2">
                     <div className="w-1.5 h-1.5 rounded-full bg-primary" />
-                    <span>Escolha do par de brincos na hora</span>
+                    <span><strong>Somente Furo na Orelha:</strong> Novos furos são feitos exclusivamente no lóbulo da orelha com pistola.</span>
                   </div>
                   <div className="flex items-center gap-2">
                     <div className="w-1.5 h-1.5 rounded-full bg-primary" />
-                    <span className="font-bold text-primary">Crianças: R$ 89,90 o par</span>
+                    <span><strong>Furo Infantil (Crianças):</strong> R$ 89,90 o par. <strong>NÃO é furo humanizado</strong> (somente pistola).</span>
                   </div>
                   <div className="flex items-center gap-2">
                     <div className="w-1.5 h-1.5 rounded-full bg-primary" />
-                    <span>Shopping Lindóia – Sala 160</span>
+                    <span><strong>Nariz e Outros Locais:</strong> Colocação/troca de piercing <strong>somente se o furo já existir</strong> (não perfuramos).</span>
+                  </div>
+                  <div className="flex items-center gap-2">
+                    <div className="w-1.5 h-1.5 rounded-full bg-primary" />
+                    <span>Shopping Lindóia – Térreo, Sala 160 (Porto Alegre)</span>
                   </div>
                 </div>
 
-                <div className="pt-8 w-full">
+                <div className="pt-8 flex flex-col sm:flex-row gap-4 justify-center lg:justify-start w-full">
                   <a
-                    href={`https://wa.me/555189703450?text=${encodeURIComponent("Olá! Gostaria de fazer a minha perfuração + joia inclusa por R$59,90.")}`}
+                    href="#localizacao"
+                    onClick={handleOfflineClick}
+                    className="inline-block bg-primary text-primary-foreground font-bold px-10 py-4 rounded-none text-sm tracking-widest uppercase hover:shadow-gold transition-all text-center w-full sm:w-auto"
+                  >
+                    Ir à Loja Agora (Sem Agendar)
+                  </a>
+                  <a
+                    href={`https://wa.me/555189703450?text=${encodeURIComponent("Olá, gostaria de fazer perfuração + joia inclusa por R$59,90")}`}
                     target="_blank"
                     rel="noopener noreferrer"
                     onClick={handleAgendarClick}
-                    className="inline-block w-full lg:w-auto bg-primary text-primary-foreground font-medium px-10 py-4 rounded-full text-sm tracking-wide hover:shadow-gold transition-all text-center"
+                    className="inline-block bg-secondary text-foreground border border-border font-bold px-10 py-4 rounded-none text-sm tracking-widest uppercase hover:bg-muted transition-all text-center w-full sm:w-auto"
                   >
-                    Quero fazer minha perfuração
+                    Chamar no WhatsApp
                   </a>
                 </div>
+                <p className="text-[11px] text-muted-foreground mt-3 italic text-center lg:text-left">
+                  *Evite filas e demoras no WhatsApp: vá direto à loja física no Shopping Lindóia. É só chegar!
+                </p>
               </div>
             </div>
           </div>

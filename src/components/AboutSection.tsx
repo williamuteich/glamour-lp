@@ -1,9 +1,9 @@
 const features = [
-  "Atendimento na hora — sem precisar agendar",
-  "Local seguro dentro do shopping",
-  "Brinco já incluso no valor",
-  "Processo rápido e confortável",
-  "Fácil acesso + estacionamento"
+  "Atendimento imediato na hora — NÃO precisa agendar, é só chegar!",
+  "Local seguro e esterilizado dentro do shopping",
+  "Brinco já incluso no valor de R$ 59,90",
+  "Processo rápido com pistola (menos de 1 minuto)",
+  "Fácil acesso + estacionamento no Shopping Lindóia"
 ];
 
 const AboutSection = () => {
@@ -25,15 +25,15 @@ const AboutSection = () => {
 
             <ul className="space-y-4 pt-4">
               {features.map((feature, idx) => (
-                <li key={idx} className="flex flex-col bg-card p-4 rounded-xl border border-border shadow-sm">
+                <li key={idx} className="flex flex-col bg-card p-4 rounded-none border border-border shadow-sm">
                   <span className="text-base text-foreground font-medium">{feature}</span>
                 </li>
               ))}
             </ul>
           </div>
           <div className="grid grid-cols-2 gap-5">
-            <img src={storeFront} alt="Fachada Glamour Lindóia" className="rounded-2xl object-cover h-full w-full min-h-[250px] shadow-soft" />
-            <img src={storeInside} alt="Interior Glamour Lindóia" className="rounded-2xl object-cover h-full w-full min-h-[250px] shadow-soft mt-10" />
+            <img src={storeFront} alt="Fachada Glamour Lindóia" className="rounded-none object-cover h-full w-full min-h-[250px] shadow-soft" />
+            <img src={storeInside} alt="Interior Glamour Lindóia" className="rounded-none object-cover h-full w-full min-h-[250px] shadow-soft mt-10" />
           </div>
         </div>
       </div>

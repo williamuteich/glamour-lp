@@ -1,5 +1,6 @@
 import { Menu, X, Instagram } from "lucide-react";
 import { useState, useEffect } from "react";
+import CountdownTimer from "./CountdownTimer";
 
 const Header = () => {
   const logo = "/assets/logo.jpeg";
@@ -13,8 +14,10 @@ const Header = () => {
   }, []);
 
   return (
-    <header className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${scrolled ? "glass border-b border-border shadow-soft" : "bg-transparent py-2"}`}>
-      <div className="container mx-auto px-4 flex items-center justify-between h-16 md:h-20">
+    <header className="fixed top-0 left-0 right-0 z-50 flex flex-col">
+      <CountdownTimer />
+      <div className={`transition-all duration-300 ${scrolled ? "glass border-b border-border shadow-soft" : "bg-transparent py-2"}`}>
+        <div className="container mx-auto px-4 flex items-center justify-between h-16 md:h-20">
         <a href="#" className="flex items-center gap-3">
           <img src={logo} alt="Glamour Lindóia" className="h-12 w-12 rounded-full object-cover ring-2 ring-primary/20" />
           <div className="flex flex-col">
@@ -64,6 +67,7 @@ const Header = () => {
           </button>
         </div>
       </div>
+    </div>
 
       {menuOpen && (
         <nav className="md:hidden glass border-b border-border px-4 py-5 space-y-4">

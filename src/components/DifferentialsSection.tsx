@@ -21,7 +21,7 @@ const DifferentialsSection = () => {
 
         <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6 max-w-4xl mx-auto">
           {items.map((item, idx) => (
-            <div key={idx} className="flex flex-col items-center justify-center text-center p-8 bg-card rounded-2xl shadow-sm border border-border/50 hover:shadow-md transition-all duration-300">
+            <div key={idx} className="flex flex-col items-center justify-center text-center p-8 bg-card rounded-none shadow-sm border border-border/50 hover:shadow-md transition-all duration-300">
               <h3 className="font-display text-lg font-medium text-foreground">{item.title}</h3>
             </div>
           ))}

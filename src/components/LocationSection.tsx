@@ -26,8 +26,8 @@ const LocationSection = () => {
           </p>
         </div>
 
-        <div className="grid md:grid-cols-2 gap-10 max-w-4xl mx-auto bg-card rounded-3xl p-8 border border-border shadow-soft">
-          <div className="rounded-2xl overflow-hidden shadow-sm h-64 md:h-full">
+        <div className="grid md:grid-cols-2 gap-10 max-w-4xl mx-auto bg-card rounded-none p-8 border border-border shadow-soft">
+          <div className="rounded-none overflow-hidden shadow-sm h-64 md:h-full">
             <iframe
               src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3454.943634208898!2d-51.15449422355863!3d-30.009774829671265!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x9519776987fdd719%3A0xbe780735ac46e089!2sGlamour%20Lind%C3%B3ia!5e0!3m2!1spt-BR!2sbr!4v1774618697838!5m2!1spt-BR!2sbr"
               width="100%"
@@ -53,26 +53,20 @@ const LocationSection = () => {
               <p className="text-muted-foreground text-base font-light">Dom: Fechado</p>
             </div>
 
-            <div className="pt-4 flex flex-col sm:flex-row gap-4">
-              <a
-                href="https://wa.me/555189703450?text=Olá!"
-                target="_blank"
-                rel="noopener noreferrer"
-                onClick={handleWhatsAppClick}
-                className="inline-block text-center bg-primary/10 text-primary hover:bg-primary/20 font-medium px-6 py-3 rounded-full text-sm tracking-wide transition-all"
-              >
-                Falar no WhatsApp
-              </a>
+            <div className="pt-4">
               <a
                 href="https://www.google.com/maps/search/?api=1&query=Glamour+Lindóia,+Shopping+Lindóia,+Porto+Alegre"
                 target="_blank"
                 rel="noopener noreferrer"
                 onClick={handleMapsClick}
-                className="inline-block text-center bg-primary text-primary-foreground hover:bg-primary/90 font-medium px-6 py-3 rounded-full text-sm tracking-wide transition-all"
+                className="inline-block text-center bg-primary text-primary-foreground hover:bg-primary/90 font-bold px-10 py-4 rounded-none text-sm tracking-widest uppercase transition-all w-full sm:w-auto shadow-md"
               >
-                Como Chegar
+                Como Chegar (Abrir Mapa/GPS)
               </a>
             </div>
+            <p className="text-xs text-muted-foreground italic mt-3">
+              *Atendimento imediato por ordem de chegada. Não perca tempo agendando: é só comparecer à loja!
+            </p>
           </div>
         </div>
       </div>
